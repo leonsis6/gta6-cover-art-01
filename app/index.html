@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cover Maker — GTA-style multi-panel poster art</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls">
+    <h1>Cover Maker</h1>
+    <p class="lede">Your photos, made into multi-panel poster cover art. Everything stays on your machine — no uploads.</p>
+
+    <label>Photos (up to 4)
+      <input id="photos" type="file" accept="image/*" multiple>
+    </label>
+    <div class="row">
+      <button id="samePhoto" type="button">One photo, all panels</button>
+      <button id="loadSamples" type="button">Load samples</button>
+    </div>
+
+    <fieldset>
+      <legend>Panel — click a panel on the cover to pick it</legend>
+      <div class="row panel-row">
+        <button class="panel-pick" type="button" data-panel="0">Hero</button>
+        <button class="panel-pick" type="button" data-panel="1">Panel 2</button>
+        <button class="panel-pick" type="button" data-panel="2">Panel 3</button>
+        <button class="panel-pick" type="button" data-panel="3">Panel 4</button>
+      </div>
+      <label class="slider">Zoom <span id="zoomVal">1.00x</span>
+        <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1">
+      </label>
+      <p class="hint">Drag inside a panel to move its photo.</p>
+    </fieldset>
+
+    <label>Title
+      <input id="title" type="text" maxlength="32" value="Sunset Heist">
+    </label>
+    <label>Subtitle
+      <input id="subtitle" type="text" maxlength="60" value="One last ride through the neon streets">
+    </label>
+    <label class="slider">Title size
+      <input id="titleSize" type="range" min="0.7" max="1.4" step="0.05" value="1">
+    </label>
+
+    <fieldset>
+      <legend>Colour grade</legend>
+      <div class="row">
+        <button class="grade active" type="button" data-grade="sunset">Sunset</button>
+        <button class="grade" type="button" data-grade="neon">Neon Night</button>
+        <button class="grade" type="button" data-grade="pastel">Pastel Day</button>
+      </div>
+    </fieldset>
+
+    <label>Export size
+      <select id="size">
+        <option value="1080x1080">1080 x 1080 — square post</option>
+        <option value="1080x1350">1080 x 1350 — portrait post</option>
+        <option value="1920x1080">1920 x 1080 — wide post</option>
+      </select>
+    </label>
+    <button id="export" type="button" class="primary">Export PNG</button>
+    <p id="status" role="status"></p>
+  </section>
+  <div class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  </div>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
